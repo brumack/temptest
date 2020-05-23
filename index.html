@@ -11,12 +11,9 @@
 				let timer;
 
 				function sendMessage() {
-					setInterval(() => {
-						console.log('Sending message to extension.');
-						var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
-						window.postMessage(data, '*');
-						timer = setTimeout(redirect, 3000);
-					}, 5000);
+					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
+					window.postMessage(data, '*');
+					timer = setTimeout(redirect, 3000);
 				}
 
 				function redirect() {
