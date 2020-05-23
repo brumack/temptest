@@ -8,7 +8,7 @@
 	<body>
 		<script>
 			function sendMessage() {
-				setIterval(() => {
+				setInterval(() => {
 					console.log('Sending message to extension.');
 					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
 					window.postMessage(data, '*');
