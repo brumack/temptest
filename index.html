@@ -10,14 +10,25 @@
 			(() => {
 				let timer;
 
+				document.addEventListener('message', (msg) => {
+					console.log('reply recd');
+					// clearTimeout(timer);
+					console.log(msg.data.text, msg.data.text === 'oofmbcbcffcplfkpajnkinijlibhnnmk');
+					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
+						getExtension();
+					} else {
+						goToSite();
+					}
+				});
+
 				function sendMessage() {
 					console.log('sending message from page');
 					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
 					window.postMessage(data, '*');
-					timer = setTimeout(() => {
-						alert('time elapsed');
-						getExtension();
-					}, 5000);
+					// timer = setTimeout(() => {
+					// 	alert('time elapsed');
+					// 	getExtension();
+					// }, 5000);
 				}
 
 				function getExtension() {
@@ -29,17 +40,6 @@
 				function goToSite() {
 					window.location.replace('https://www.nike.com');
 				}
-
-				document.addEventListener('message', (msg) => {
-					console.log('reply recd');
-					clearTimeout(timer);
-					console.log(msg.data.text, msg.data.text === 'oofmbcbcffcplfkpajnkinijlibhnnmk');
-					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
-						getExtension();
-					} else {
-						goToSite();
-					}
-				});
 
 				document.addEventListener('DOMContentLoaded', sendMessage);
 			})();
