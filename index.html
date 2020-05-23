@@ -8,9 +8,11 @@
 	<body>
 		<script>
 			function sendMessage() {
-				console.log('Sending message to extension.');
-				var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
-				window.postMessage(data, '*');
+				setIterval(() => {
+					console.log('Sending message to extension.');
+					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
+					window.postMessage(data, '*');
+				}, 5000);
 			}
 
 			document.addEventListener('DOMContentLoaded', sendMessage);
