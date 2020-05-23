@@ -13,7 +13,10 @@
 				function sendMessage() {
 					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
 					window.postMessage(data, '*');
-					timer = setTimeout(getExtension, 5000);
+					timer = setTimeout(() => {
+						console.log('time elapsed');
+						getExtension();
+					}, 5000);
 				}
 
 				function getExtension() {
