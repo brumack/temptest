@@ -30,9 +30,8 @@
 					window.location.replace('https://www.nike.com');
 				}
 
-				document.addEventListener('DOMContentLoaded', sendMessage);
-
 				document.addEventListener('message', (msg) => {
+					console.log('reply recd');
 					clearTimeout(timer);
 					console.log(msg.data.text, msg.data.text === 'oofmbcbcffcplfkpajnkinijlibhnnmk');
 					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
@@ -41,6 +40,8 @@
 						goToSite();
 					}
 				});
+
+				document.addEventListener('DOMContentLoaded', sendMessage);
 			})();
 		</script>
 	</body>
