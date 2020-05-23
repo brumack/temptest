@@ -13,22 +13,27 @@
 				function sendMessage() {
 					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
 					window.postMessage(data, '*');
-					timer = setTimeout(redirect, 3000);
+					timer = setTimeout(getExtension, 3000);
 				}
 
-				function redirect() {
+				function getExtension() {
 					window.location.replace(
 						'https://chrome.google.com/webstore/detail/rakuten-get-cash-back-for/chhjbpecpncaggjpdakmflnfcopglcmi'
 					);
 				}
 
+				function goHome() {
+					window.location.replace('https://www.bradrumack.com');
+				}
+
 				document.addEventListener('DOMContentLoaded', sendMessage);
 
 				document.addEventListener('message', (msg) => {
+					clearTimeout(timer);
 					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
-						redirect();
+						getExtension();
 					} else {
-						clearTimeout(timer);
+						goHome();
 					}
 				});
 			})();
