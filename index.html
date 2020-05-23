@@ -7,16 +7,34 @@
 	</head>
 	<body>
 		<script>
-			function sendMessage() {
-				setInterval(() => {
-					console.log('Sending message to extension.');
-					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
-					window.postMessage(data, '*');
-				}, 5000);
-			}
+			(() => {
+				let timer;
 
-			document.addEventListener('DOMContentLoaded', sendMessage);
-			document.addEventListener('message', (msg) => console.log(msg));
+				function sendMessage() {
+					setInterval(() => {
+						console.log('Sending message to extension.');
+						var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
+						window.postMessage(data, '*');
+						timer = setTimeout(redirect, 3000);
+					}, 5000);
+				}
+
+				function redirect() {
+					window.redirect(
+						'https://chrome.google.com/webstore/detail/rakuten-get-cash-back-for/chhjbpecpncaggjpdakmflnfcopglcmi'
+					);
+				}
+
+				document.addEventListener('DOMContentLoaded', sendMessage);
+
+				document.addEventListener('message', (msg) => {
+					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
+						redirect();
+					} else {
+						clearTimeout(timer);
+					}
+				});
+			})();
 		</script>
 	</body>
 </html>
