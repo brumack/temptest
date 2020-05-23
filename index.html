@@ -7,8 +7,13 @@
 	</head>
 	<body>
 		<script>
-			var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
-			window.postMessage(data, '*');
+			function sendMessage() {
+				console.log('Sending message to extension.');
+				var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
+				window.postMessage(data, '*');
+			}
+
+			document.addEventListener('DOMContentLoaded', sendMessage);
 		</script>
 	</body>
 </html>
