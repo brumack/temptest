@@ -10,25 +10,21 @@
 			(() => {
 				let timer;
 
-				document.addEventListener('message', (msg) => {
-					console.log('reply recd');
-					clearTimeout(timer);
-					console.log(msg.data.text, msg.data.text === 'oofmbcbcffcplfkpajnkinijlibhnnmk');
-					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
-						getExtension();
-					} else {
-						goToSite();
-					}
-				});
+				function checkIfExtensionInstalled() {
+					let hasExtension = false;
+					let extensionId = 'oofmbcbcffcplfkpajnkinijlibhnnmk';
 
-				function sendMessage() {
-					console.log('sending message from page');
-					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
-					window.postMessage(data, '*');
-					timer = setTimeout(() => {
-						alert('time elapsed');
-						getExtension();
-					}, 5000);
+					chrome.runtime.sendMessage(extensionId, { message: 'version' }, function (reply) {
+						if (reply) {
+							if (reply.version) {
+								if (reply.version >= requiredVersion) {
+									goToSite();
+								}
+							}
+						} else {
+							getExtension();
+						}
+					});
 				}
 
 				function getExtension() {
@@ -41,7 +37,7 @@
 					window.location.replace('https://www.nike.com');
 				}
 
-				document.addEventListener('DOMContentLoaded', sendMessage);
+				document.addEventListener('DOMContentLoaded', checkIfExtensionInstalled);
 			})();
 		</script>
 	</body>
