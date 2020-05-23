@@ -22,18 +22,19 @@
 					);
 				}
 
-				function goHome() {
-					window.location.replace('https://www.bradrumack.com');
+				function goToSite() {
+					window.location.replace('https://www.nike.com');
 				}
 
 				document.addEventListener('DOMContentLoaded', sendMessage);
 
 				document.addEventListener('message', (msg) => {
 					clearTimeout(timer);
+					console.log(msg.data.text, msg.data.text === 'oofmbcbcffcplfkpajnkinijlibhnnmk');
 					if (msg.data.text && msg.data.text != 'oofmbcbcffcplfkpajnkinijlibhnnmk') {
 						getExtension();
 					} else {
-						goHome();
+						goToSite();
 					}
 				});
 			})();
