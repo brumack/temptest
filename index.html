@@ -23,7 +23,7 @@
 
 				function sendMessage() {
 					console.log('sending message from page');
-					var data = { type: 'Reply', text: 'Hello from the webpage!' };
+					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
 					window.postMessage(data, '*');
 					timer = setTimeout(() => {
 						alert('time elapsed');
