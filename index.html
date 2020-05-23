@@ -14,7 +14,7 @@
 					var data = { type: 'FROM_PAGE', text: 'Hello from the webpage!' };
 					window.postMessage(data, '*');
 					timer = setTimeout(() => {
-						console.log('time elapsed');
+						alert('time elapsed');
 						getExtension();
 					}, 5000);
 				}
