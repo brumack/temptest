@@ -14,12 +14,10 @@
 					let hasExtension = false;
 					let extensionId = 'oofmbcbcffcplfkpajnkinijlibhnnmk';
 
-					chrome.runtime.sendMessage(extensionId, { message: 'version' }, function (reply) {
+					chrome.runtime.sendMessage(extensionId, { message: 'installCheck' }, function (reply) {
 						if (reply) {
-							if (reply.version) {
-								if (reply.version >= requiredVersion) {
-									goToSite();
-								}
+							if (reply.installed) {
+								goToSite();
 							}
 						} else {
 							getExtension();
